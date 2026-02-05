@@ -1,0 +1,181 @@
+/* 노션 스타일 변수 설정 */
+:root {
+  --bg-page: #ffffff;
+  --bg-sidebar: #f7f6f3;
+  --text-main: #37352f;
+  --border-color: #edece9;
+  --notion-blue: #2383e2;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  color: var(--text-main);
+}
+
+.notion-layout {
+  display: flex;
+  width: 100vw;                                             /* 브라우저 너비 전체 */
+  height: 100vh;                                            /* 브라우저 높이 전체 */
+  overflow: hidden;                                         /* 전체 페이지 스크롤 방지 (내부 영역만 스크롤) */
+}
+
+/* 사이드바 스타일 */
+.sidebar {
+  width: 280px;
+  min-width: 280px;                                         /* 창이 작아져도 사이드바 크기 유지 */
+  background-color: var(--bg-sidebar);
+  border-right: 1px solid var(--border-color);
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;                                         /* 내용이 많아지면 사이드바 안에서 스크롤 */
+}
+
+/* 입력창 스타일 */
+.notion-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  border-bottom: 1px solid var(--border-color);
+  padding: 10px 0;
+  font-size: 16px;
+  outline: none;
+  margin-bottom: 20px;
+  color: #37352f;                                         /* 짙은 회색으로 명시 */
+}
+
+/* 날짜 입력창 스타일 */
+.notion-date-input {
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 5px 8px;
+  font-size: 13px;
+  color: var(--text-main);
+  background: white;
+  margin-bottom: 10px;
+  outline: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.notion-date-input:focus {
+  border-color: var(--notion-blue);
+}
+
+/* 태그 스타일 */
+.tag-selector {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
+  align-items: center;
+}
+
+.tag-option {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.tag-option.active {
+  border-color: var(--text-main);
+  transform: scale(1.1);
+}
+
+.tag-badge {
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: white;
+  margin-left: auto;
+  font-weight: bold;
+}
+
+/* 할 일 목록 스타일 */
+.todo-list {
+  list-style: none;
+  padding: 0;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;                           /* 글자와 버튼을 양 끝으로 */
+  padding: 8px 10px;
+  border-radius: 5px;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.todo-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);                  /* 마우스 올리면 배경색 살짝 변경 */
+}
+
+/* 삭제 버튼 스타일 (평소에는 안 보임) */
+.delete-btn {
+  background: #eb5757;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  opacity: 0;                                               /* 평소엔 숨김 */
+  transition: opacity 0.2s;
+  margin-left: 5px
+}
+
+.todo-item:hover .delete-btn {
+  opacity: 1;                                               /* 마우스 올리면 나타남 */
+}
+
+
+/* 필터 버튼 */
+.filter-section {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+.filter-btn {
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 4px;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.filter-btn.active {
+  background: rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+}
+
+/* 메인 캘린더 영역 */
+.main-content {
+  flex-grow: 1;                                             /* 남은 모든 공간을 차지하도록 설정 */
+  height: 100%;                                             /* 부모인 .notion-layout의 높이를 그대로 상속 */
+  padding: 40px;
+  background-color: var(--bg-page);
+  overflow-y: auto;                                         /* 캘린더나 내용이 길어지면 여기서 스크롤 */
+}
+
+/* FullCalendar가 영역에 꽉 차도록 설정 */
+#calendar-container {
+  height: 100%;
+}
+
+/* FullCalendar 내부 스타일 살짝 수정 */
+.fc {
+  height: 100% !important;                                  /* 캘린더가 메인 영역 높이에 맞게 자동 조절 */
+}
